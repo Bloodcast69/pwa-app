@@ -1,20 +1,93 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<main>
+  <div class="container">
+    <section>
+
+      <div class="row">
+        <div class="col-md-12 mb-4">
+          <h2 class="text-uppercase my-3">Schedule</h2>
+          <h5 class="mb-4 d-none d-md-block">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h5>
+
+          <div class="modal-footer justify-content-center">
+            <a type="button" mdbBtn color="info" outline="true" block="true" class="waves-effect mb-4" (click)="frame.show()"
+               mdbWavesEffect>Add event
+              <i class="fa fa-plus ml-1"></i>
+            </a>
+          </div>
+
+          <div *ngFor="let item of items$ | async">
+            <div class="media schedule-list">
+              <h3 class="h3-responsive font-weight-bold mr-3">{{item.time}}</h3>
+              <div class="media-body mb-3 mb-lg-5">
+                <h6 class="mt-0 font-weight-bold">{{item.name}}</h6>
+                <hr class="hr-bold mb-0 my-2">
+                <p class="font-smaller mb-0">{{item.instructor}}</p>
+              </div>
+            </div>
+            <p class="p-3 mb-4 blue-grey lighten-5 blue-grey lighten-5">{{item.description}}</p>
+          </div>
+
+          <h2 class="text-uppercase mb-3 mt-5 pt-4">Code of conduct</h2>
+          <h6 class="mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h6>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+       aria-labelledby="myModalLabel" aria-hidden="true" style="overflow-y: auto">
+    <div class="modal-dialog modal-notify modal-info" role="document">
+      <!--Content-->
+      <div class="modal-content">
+        <!--Header-->
+        <div class="modal-header text-center">
+          <h4 class="modal-title white-text w-100 font-weight-bold py-2">Schedule appointment</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+            <span aria-hidden="true" class="white-text">&times;</span>
+          </button>
+        </div>
+
+        <!--Body-->
+        <div class="modal-body">
+
+          <div class="md-form mb-5">
+            <i class="fa fa-user prefix grey-text"></i>
+            <input type="text" id="form1" class="form-control" mdbInputDirective [formControl]="nameInput">
+            <label data-error="wrong" data-success="right" for="form1">Event name</label>
+          </div>
+
+          <div class="md-form">
+            <i class="fa fa-envelope prefix grey-text"></i>
+            <input type="email" id="form2" class="form-control" mdbInputDirective [formControl]="timeInput">
+            <label data-error="wrong" data-success="right" for="form2">Event time</label>
+          </div>
+
+          <div class="md-form mb-5">
+            <i class="fa fa-user prefix grey-text"></i>
+            <input type="text" id="form3" class="form-control" mdbInputDirective [formControl]="descriptionInput">
+            <label data-error="wrong" data-success="right" for="form3">Event description</label>
+          </div>
+
+          <div class="md-form">
+            <i class="fa fa-envelope prefix grey-text"></i>
+            <input type="email" id="form4" class="form-control" mdbInputDirective [formControl]="instructorInput">
+            <label data-error="wrong" data-success="right" for="form4">Event instructor</label>
+          </div>
+
+        </div>
+
+        <div class="modal-footer justify-content-center">
+          <a type="button" mdbBtn color="info" outline="true" block="true" class="waves-effect" (click)="addNewItem()"
+             mdbWavesEffect>Add event
+            <i class="fa fa-plus ml-1"></i>
+          </a>
+        </div>
+
+        <!--Footer-->
+      </div>
+      <!--/.Content-->
+    </div>
+  </div>
+
+</main>
 
